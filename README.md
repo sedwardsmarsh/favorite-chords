@@ -1,30 +1,40 @@
 # These are some of my favorite chord progressions
 
 ```mermaid
-graph LR;
+flowchart LR;
     %% All starting chords will have a circle shape
 
-    %%subgraph Jack Johnson - Sitting Waiting Wishing
-        Am((Am))-->Am7
-        Am7-->G
-        G-->G7
-        G7-->F
-        F-->F7
-        F7-->C
-        C-->C7
-        C7-->E
-        E-->E7
-        E7-->Am
-    %%end
+    %% Jack Johnson - Sitting Waiting Wishing
+    Am((Am))-->Am7
+    Am7-->G
+    G-->G7
+    G7-->F
+    F-->F7
+    F7-->C
+    C-->C7
+    C7-->E
+    E-->E7
+    E7-->Am
     
-    %%subgraph Ashley Eriksson - Island Song
-        A((A))-->D
-        D-->G
-        G-->Bm
-        D-->A
-        A-->G
-        Bm-->G
-        G-->D
-        G-->A
-    %%end
+    %% Ashley Eriksson - Island Song
+    A((A))-->D
+    D-->G
+    G-->Bm
+    D-->A
+    A-->G
+    Bm-->G
+    G-->D
+    G-->A
+    A-->D
+    D-->F#7
+    F#7-->G
+    G-->E7
+    E7-->A
+
+    %% Radiohead - Creep
+    G((G))-->B
+    B-->C
+    C-->Cm
+    Cm-->Cm
+    Cm-->G
 ```
