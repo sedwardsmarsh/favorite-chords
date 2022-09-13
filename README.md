@@ -46,3 +46,10 @@ flowchart LR;
     Cm-->Cm
     Cm-->G
 ```
+
+---
+
+# TODO
+## Write a utility script for:
+  - adding new songs
+  - checking for duplicate lines
