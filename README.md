@@ -1,5 +1,13 @@
 # These are some of my favorite chord progressions
 
+## **Circlular nodes are chords that start songs**
+
+### Songlist
+
+- Jack Johnson - Sitting Waiting Wishing
+- Ashley Eriksson - Island Song
+- Radiohead - Creep
+
 ```mermaid
 flowchart LR;
     %% All starting chords will have a circle shape
