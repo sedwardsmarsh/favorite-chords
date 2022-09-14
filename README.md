@@ -7,9 +7,10 @@
 - Jack Johnson - Sitting Waiting Wishing
 - Ashley Eriksson - Island Song
 - Radiohead - Creep
+- Sam's Riff 1
 
 ```mermaid
-flowchart LR;
+graph LR;
     %% All starting chords will have a circle shape
 
     %% Jack Johnson - Sitting Waiting Wishing
@@ -45,11 +46,18 @@ flowchart LR;
     C-->Cm
     Cm-->Cm
     Cm-->G
+
+    %% Sam's Riff 1
+    C7((C7))-->B7
+    B7-->Em7
+    Em7-->D7
+    D7-->Cm7
+    Cm7-->C7
 ```
 
 ---
 
 # TODO
-## Write a utility script for:
-  - adding new songs
-  - checking for duplicate lines
+- Write a utility script for:
+    - adding new songs
+    - checking for duplicate lines
