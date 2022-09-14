@@ -26,7 +26,7 @@ class Chord_Graph:
     '''
     def __init__(self, path: str='README.md') -> None:
         self.songs: list[Song] = list()
-        self.graph: dict[str,list[str]] = dict()
+        # self.graph: dict[str,list[str]] = dict()
         self.path = path
 
     def add(self, song: Song) -> None:
@@ -52,9 +52,9 @@ class Chord_Graph:
                 # avoid division by zero
                 if len(song.chords) > 0:
                     curr_chord_idx = (curr_chord_idx + 1) % len(song.chords)
-            lines = ''.join(lines)
-            f.seek(0)
-            f.write(lines)
+            lines = ''.join(lines) # create string from list
+            f.seek(0) # jump to beginning of file
+            f.write(lines) # flush into file
             
     def remove(self, id: str) -> None:
         pass
