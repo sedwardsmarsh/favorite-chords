@@ -1,6 +1,9 @@
 # These are some of my favorite chord progressions
 
-## **Circlular nodes are chords that start songs**
+## NOTE:
+- Circlular nodes are chords that start songs
+- songs must be added in the following format (in the mermaid block):
+    - `<artist> - <title>`
 
 ### Songlist
 
@@ -11,8 +14,6 @@
 
 ```mermaid
 graph LR;
-    %% All starting chords will have a circle shape
-
     %% Jack Johnson - Sitting Waiting Wishing
     Am((Am))-->Am7
     Am7-->G
@@ -47,7 +48,7 @@ graph LR;
     Cm-->Cm
     Cm-->G
 
-    %% Sam's Riff 1
+    %% Sam - Riff 1
     C7((C7))-->B7
     B7-->Em7
     Em7-->D7
@@ -62,3 +63,5 @@ graph LR;
 - Write a utility script for:
     - adding new songs
     - checking for duplicate lines
+    - removing songs
+    - searching for songs
