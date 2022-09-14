@@ -1,22 +1,20 @@
 # A script that modifies the chord graph
 
 class Song:
-    def __init__(self) -> None:
-        self.artist: str = ''
-        self.title: str = ''
-        self.chords: dict[str] = dict()
+    def __init__(self, id: str='', chords: dict[str,str]=dict) -> None:
+        self.id: str = id
+        self.chords: dict[str,str] = chords
 
-    def populate(self, new_artist: str, new_title: str, new_chords: dict[str]) -> None:
-        self.artist = new_artist
-        self.title = new_title
+    def populate(self, new_id: str, new_chords: dict[str,str]) -> None:
+        self.id = new_id
         self.chords = new_chords
 
-    def info(self) -> tuple[str, str, dict[str]]:
-        return (self.artist, self.title, self.chords)
+    def info(self) -> tuple[str, dict[str,str]]:
+        return (self.id, self.chords)
 
 class Chord_Graph:
     def __init__(self) -> None:
-        self.songs: dict[dict[Song]] = dict()
+        self.songs: list[Song] = list()
 
     def load(self, path: str='README.md') -> None:
         with open(path) as file:
@@ -29,10 +27,9 @@ class Chord_Graph:
                 # TODO: replace the song artist and title search with a regex
                 line = line.lstrip()
                 if line.startswith('%%'):
-                    id = line.split('-')
-                    artist = id[0][3:].strip()
-                    title = id[1][1:]
-                    # print(f'{artist=} {title=}')
+                    id = line[3:]
+                    self.songs.append(Song(id))
+                    print(f'{id=}')
 
                 elif line == '':
                     continue
@@ -40,7 +37,7 @@ class Chord_Graph:
                 # TODO: replace the chord search with a regex
                 else:
                     print(line)
-                    self.songs[artist][title].append(line)
 
 graph = Chord_Graph()
 graph.load()
+pass

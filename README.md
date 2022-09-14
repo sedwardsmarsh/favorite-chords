@@ -2,8 +2,8 @@
 
 ## NOTE:
 - Circlular nodes are chords that start songs
-- songs must be added in the following format (in the mermaid block):
-    - `<artist> - <title>`
+<!-- - songs must be added in the following format (in the mermaid block):
+    - `<artist> - <title>` -->
 
 ### Songlist
 
