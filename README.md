@@ -58,6 +58,7 @@ graph LR;
 ---
 
 # TODO
+- figure out how to make graph bigger
 - Write a utility script for:
     - adding new songs
     - checking for duplicate lines
