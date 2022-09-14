@@ -44,8 +44,11 @@ class Chord_Graph:
                         line = line[:paren_start_idx] + line[paren_start_idx+paren_end_idx+2:]
                     chords = line.split('-->')
                     print(chords)
-                    # if chords[0] not in new_song.chords:
-                    new_song.chords[chords[0]] = chords[1]
+                    if chords[0] not in new_song.chords:
+                        new_song.chords[chords[0]] = [chords[1]]
+                    else:
+                        new_song.chords[chords[0]] = 
+        # why do i need to build a model of the songs in memory? why can't i just add and remove songs to the README.md? by following the format of the file? delete songs by finding their song id (list all songs available to delete)
                         
                     
 
