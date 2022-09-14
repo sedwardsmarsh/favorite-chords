@@ -20,57 +20,56 @@ class Song:
     def info(self) -> tuple[str, dict[str,list[str]]]:
         return (self.id, self.chords)
 
+
 class Chord_Graph:
     '''Represents all the songs from the chord graph.
     '''
-    def __init__(self) -> None:
+    def __init__(self, path: str='README.md') -> None:
         self.songs: list[Song] = list()
         self.graph: dict[str,list[str]] = dict()
+        self.path = path
 
-    def load(self, path: str='README.md') -> None:
-        with open(path) as file:
-            data = file.read()
-            # TODO: replace these two lines with a regex
-            start_idx = data.find('```mermaid')
-            end_idx = data[start_idx:].find('```', 3)
+    def add(self, song: Song) -> None:
+        self.songs.append(song)
+        # write song to file
+        with open(self.path, 'r+') as f:
+            lines = f.readlines()
+            block_end_idx = lines.index('```\n')
 
-            for line in data[start_idx:start_idx+end_idx].split('\n')[2:]:
-                # TODO: replace the song artist and title search with a regex
-                line = line.lstrip()
-                if line.startswith('%%'):
-                    id = line[3:]
-                    new_song = Song(id, dict())
-                    print(f'{id=}')
+            # write id
+            lines.insert(block_end_idx, f'\n\t%% {song.id}\n')
 
-                elif line == '':
-                    self.songs.append(new_song)
-                
-                # TODO: replace the chord search with a regex
+            # write chords
+            curr_chord_idx = 0
+            chords_for_song = list(song.chords)
+            while len(song.chords) > 0:
+                first_chord = chords_for_song[curr_chord_idx]
+                if len(song.chords[first_chord]) == 0:
+                    del song.chords[first_chord]
                 else:
-                    # convert starting chord line to normal line
-                    if '((' in line:
-                        paren_start_idx = line.find('((')
-                        paren_end_idx = line[paren_start_idx:].find('))')
-                        line = line[:paren_start_idx] + line[paren_start_idx+paren_end_idx+2:]
-                    chords = line.split('-->')
-                    if chords[0] not in new_song.chords:
-                        new_song.chords[chords[0]] = [chords[1]]
-                    # don't add duplicate changes
-                    elif chords[1] in new_song.chords[chords[0]]:
-                        continue
-                    else:
-                        new_song.chords[chords[0]].append(chords[1])
-
-    def add(self) -> None:
-        pass
-    
+                    second_chord = song.chords[chords_for_song[curr_chord_idx]].pop(0)
+                    lines.insert(block_end_idx+1, f'\t{first_chord}-->{second_chord}\n')
+                # avoid division by zero
+                if len(song.chords) > 0:
+                    curr_chord_idx = (curr_chord_idx + 1) % len(song.chords)
+            lines = ''.join(lines)
+            f.seek(0)
+            f.write(lines)
+            
     def remove(self, id: str) -> None:
         pass
 
     def list(self) -> str:
         pass
 
-graph = Chord_Graph()
-graph.load()
-print(graph.songs[1])
+
+class Interface:
+    '''Handles input and output to the user.
+    '''
+    pass
+
+graph = Chord_Graph('README.md')
+graph.add(Song('test', {'C':['D','Cm'],'D':['G']}))
+
+# user will enter chords as space delimited list of changes: C,A G,D D,Cm
 pass
