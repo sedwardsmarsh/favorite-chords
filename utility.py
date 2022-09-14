@@ -42,13 +42,20 @@ class Chord_Graph:
             # write chords
             curr_chord_idx = 0
             chords_for_song = list(song.chords)
+            starting_chord = True
             while len(song.chords) > 0:
                 first_chord = chords_for_song[curr_chord_idx]
                 if len(song.chords[first_chord]) == 0:
                     del song.chords[first_chord]
                 else:
                     second_chord = song.chords[chords_for_song[curr_chord_idx]].pop(0)
-                    lines.insert(block_end_idx+1, f'\t{first_chord}-->{second_chord}\n')
+                    if starting_chord == True:
+                        second_chord_str = f'\t{first_chord}(({first_chord}))-->{second_chord}\n'
+                        starting_chord = False
+                    else:
+                        second_chord_str = f'\t{first_chord}-->{second_chord}\n'
+                    block_end_idx += 1
+                    lines.insert(block_end_idx, second_chord_str)
                 # avoid division by zero
                 if len(song.chords) > 0:
                     curr_chord_idx = (curr_chord_idx + 1) % len(song.chords)
@@ -70,6 +77,7 @@ class Interface:
 
 graph = Chord_Graph('README.md')
 graph.add(Song('test', {'C':['D','Cm'],'D':['G']}))
+# graph.add(Song('test2', {'C':['Cm'],'D':['G']}))
 
 # user will enter chords as space delimited list of changes: C,A G,D D,Cm
 pass
