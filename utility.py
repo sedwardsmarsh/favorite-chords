@@ -61,10 +61,14 @@ class Chord_Graph:
                     else:
                         new_song.chords[chords[0]].append(chords[1])
 
-    # def add(self) -> None:
-    #     '''Add a song to the Chord Graph.
-    #     '''
+    def add(self) -> None:
+        pass
+    
+    def remove(self, id: str) -> None:
+        pass
 
+    def list(self) -> str:
+        pass
 
 graph = Chord_Graph()
 graph.load()
